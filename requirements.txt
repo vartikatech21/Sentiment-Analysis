@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+pandas
+snscrape
+nltk
+scikit-learn
+joblib
+textblob
+pydantic
+python-multipart
+streamlit
+altair
+matplotlib
+wordcloud
+tensorflow
