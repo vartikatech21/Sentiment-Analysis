@@ -192,13 +192,12 @@ def train_tfidf_linear_svc(data: pd.DataFrame):
     clf.fit(X_train_vec, y_train)
     preds = clf.predict(X_test_vec)
     print("TF-IDF LinearSVC Accuracy:", accuracy_score(y_test, preds))
-    print(classification_report(y_test, preds, digits=3))
 
     joblib.dump(clf, "backend/tfidf_linear_svc.joblib")
     joblib.dump(vectorizer, "backend/tfidf_vectorizer.joblib")
     print("Saved backend/tfidf_linear_svc.joblib and backend/tfidf_vectorizer.joblib")
 
-def train_lstm(data: pd.DataFrame, max_words: int = 30000, max_len: int = 200, epochs: int = 3, batch_size: int = 64):
+def train_lstm(data: pd.DataFrame, max_words: int = 30000, max_len: int = 200, epochs: int = 10, batch_size: int = 64):
     X = data["text"].tolist()
     y = data["label"].values
 
@@ -222,9 +221,9 @@ def train_lstm(data: pd.DataFrame, max_words: int = 30000, max_len: int = 200, e
 
     model = Sequential([
         Embedding(input_dim=min(max_words, len(tokenizer.word_index)+1), output_dim=128, input_length=max_len),
-        LSTM(128, return_sequences=False),
+        LSTM(64, return_sequences=False),
         Dropout(0.3),
-        Dense(64, activation="relu"),
+        Dense(32, activation="relu"),
         Dropout(0.2),
         Dense(num_classes, activation="softmax"),
     ])
