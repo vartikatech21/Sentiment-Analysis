@@ -7,7 +7,7 @@ import numpy as np
 import nltk
 from pathlib import Path
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, accuracy_score
+from sklearn.metrics import accuracy_score
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
 from sklearn.preprocessing import LabelEncoder
